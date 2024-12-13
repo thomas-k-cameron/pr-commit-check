@@ -11,7 +11,8 @@ jobs:
           fetch-depth: 1
           
       - uses: actions/setup-python@v3
-      - uses: pre-commit/action@v3.0.1
+      - name: run pre-commit
+        run: pre-commit run --all-files; git commit -a -m pre-commit;
       - name: create pull request
         run: gh pr create -B pre-commit -H branch_to_merge --title 'apply pre-commit' --body 'Created by Github action'
         env:
