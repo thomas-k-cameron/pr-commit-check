@@ -16,7 +16,9 @@ jobs:
              git config --local user.name "github-actions[bot]";
       - name: run pre-commit
         run: set +e;  git branch pre-commit/${{ github.sha }}; git checkout pre-commit/${{ github.sha }}; pip install pre-commit && pre-commit run --all-files; git commit -a -m pre-commit; git push --all origin;
+        env:
+            github_token: ${{ secrets.WORKFLOW_TOKEN }}
       - name: create pull request
         run: gh pr create -B pre-commit/${{ github.sha }} -H main --title 'apply pre-commit' --body 'Created by Github action'
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            github_token: ${{ secrets.WORKFLOW_TOKEN }}
