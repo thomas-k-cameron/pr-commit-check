@@ -19,6 +19,6 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: create pull request
-        run: gh pr create -B pre-commit/${{ github.sha }} -H main --title 'apply pre-commit' --body 'Created by Github action'
+        run: gh pr create -H pre-commit/${{ github.sha }} -B main --title 'apply pre-commit' --body 'Created by Github action'
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
